@@ -1,0 +1,20 @@
+import javax.swing.JFrame;
+
+public class PlotterTest 
+{
+	
+	public static void main(String[] args) 
+	{
+		
+		JFrame frame = new JFrame();
+		frame.setSize(400, 450);
+		
+		frame.setTitle("Four Line PLotter");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//object to make a graphics appear in a frame
+		
+		
+	}
+	
+}
