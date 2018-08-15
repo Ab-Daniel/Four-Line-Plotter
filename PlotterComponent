@@ -3,10 +3,11 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JComponent;
 
-public class PlotterComponent extends JComponent implements MouseListener
+public class PlotterComponent extends JComponent //implements MouseListener
 {
 	
 	public void paintComponent(Graphics g)
@@ -15,29 +16,63 @@ public class PlotterComponent extends JComponent implements MouseListener
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g; //recovers Graphics2D
 		
+		Axes axes = new Axes(0, 400, 0, 450, 200, 200, 25, 25);
+		axes.draw(g2);
+		
 		//drawing lines
-		Graphics.drawLine(0, 0, mousePressedX, mousePressedY);
+		
+		g2.drawLine(0, 0, mousePressedY, mousePressedY);
+		g2.drawLine(0, 400, mousePressedY, mousePressedY);
+		g2.drawLine(450, 400, mousePressedY, mousePressedY);
+		g2.drawLine(450, 0, mousePressedY, mousePressedY);
+	
+	}
+	
+	
+	class MousePressListener implements MouseListener
+	{
+		
+	    public void mouseClicked(MouseEvent event)
+	    {
+	    	
+	       mousePressedX = event.getX( );
+	       mousePressedY = event.getY( );
+	       point.setLocation(mousePressedX, mousePressedY);
+	       repaint( );
+	       
+	    }
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	
-    public void mousePressed(MouseEvent event)
-    {
-    	
-       mousePressedX = event.getX( );
-       mousePressedY = event.getY( );
-       point.setLocation(mousePressedX, mousePressedY);
-       repaint( );
-       
-    }
-
-    //do-nothing methods
-	public void mouseClicked(MouseEvent arg0) { }
-	public void mouseEntered(MouseEvent arg0) {	}
-	public void mouseExited(MouseEvent arg0) { }
-	public void mouseReleased(MouseEvent arg0) { }
+	MouseListener listener = new MousePressListener();
+	addMouseListener(listener);
 
 	private Point point;
 	private int mousePressedX;
 	private int mousePressedY;
-	
+		
 }
