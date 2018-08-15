@@ -1,6 +1,8 @@
+import java.awt.event.ComponentListener;
+
 import javax.swing.JFrame;
 
-public class PlotterTest 
+public class PlotterTest
 {
 	
 	public static void main(String[] args) 
@@ -12,8 +14,11 @@ public class PlotterTest
 		frame.setTitle("Four Line PLotter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//object to make a graphics appear in a frame
 		
+		//object to make a graphics appear in a frame
+		PlotterComponent component = new PlotterComponent();
+		frame.add(component);
+		frame.setVisible(true);
 		
 	}
 	
