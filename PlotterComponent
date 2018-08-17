@@ -18,30 +18,32 @@ public class PlotterComponent extends JComponent //implements MouseListener
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g; //recovers Graphics2D
 		
-		Axes axes = new Axes(0, 400, 0, 450, 200, 200, 25, 25);
+		Axes axes = new Axes(0, 400, 400, 0, 200, 200, 25, 25);
 		axes.draw(g2);
 		
-		//listener.mouseClicked();
 		
 		//drawing lines
-		
 		if(p != null)
 		{
 			
 			plotPoint(g2);
 			
-			g2.drawLine(0, 0, mousePressedY, mousePressedY);
-			g2.drawLine(0, 400, mousePressedY, mousePressedY);
-			g2.drawLine(450, 450, mousePressedY, mousePressedY);
-			g2.drawLine(450, 0, mousePressedY, mousePressedY);
+			//top left
+			g2.drawLine(0, 0, mousePressedX, mousePressedY);
+			
+			//bottom left
+			g2.drawLine(0, 400, mousePressedX, mousePressedY);
+			
+			//bottom right
+			g2.drawLine(450, 450, mousePressedX, mousePressedY);
+			
+			//top right
+			g2.drawLine(400, 0, mousePressedX, mousePressedY);
+			
+			//Display coordinates
+			g2.drawString("("+ ((mousePressedX - 200)/25) +","+ (((mousePressedY - 200)*-1)/25) +")", mousePressedX + 5, mousePressedY + 5);
 			
 		}
-		
-		//g2.drawLine(0, 0, mousePressedY, mousePressedY);
-		//g2.drawLine(0, 400, mousePressedY, mousePressedY);
-		//g2.drawLine(450, 400, mousePressedY, mousePressedY);
-		//g2.drawLine(450, 0, mousePressedY, mousePressedY);
-	
 		
 		
 	}
@@ -49,7 +51,7 @@ public class PlotterComponent extends JComponent //implements MouseListener
 	public PlotterComponent()
 	{
 		
-		class MousePressListener extends MouseAdapter //implements MouseListener
+		class MousePressListener extends MouseAdapter
 		{
 			
 		    public void mouseClicked(MouseEvent event)
